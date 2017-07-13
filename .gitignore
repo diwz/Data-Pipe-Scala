@@ -1,0 +1,11 @@
+*.class
+*.log
+target/
+
+# IDE
+.idea/
+*.iml
+
+# Spark
+spark-warehouse/
+
