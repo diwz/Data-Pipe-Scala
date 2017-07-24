@@ -42,8 +42,10 @@ class IsbnEncoderTest {
     val df_r = df.explodeIsbn()
 
     assert(5 == df_r.count())
+
     assert(5 == df_r.filter(col("name") === "Learning Spark: Lightning-Fast Big Data Analysis").count())
     assert(5 == df_r.filter(col("year") === 2015).count())
+
 
     assert(1 == df_r.filter(col("isbn") === "ISBN: 978-1449358624").count())
     assert(1 == df_r.filter(col("isbn") === "ISBN-EAN: 978").count())
