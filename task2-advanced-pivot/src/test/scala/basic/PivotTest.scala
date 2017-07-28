@@ -60,7 +60,7 @@ class PivotTest {
     assert(2 == df_r.filter(col("test") === "Final test" && col("testResult") === Pivot.TestPassed).count())
 
     // size of list or vector is equal one
-    assert(2 == df_r.filter(size(col("features")) === 1).count())
+    assert(2 == df_r.select("features").count())
   }
 
   @Test
@@ -102,11 +102,12 @@ class PivotTest {
     assert(1 == df_r.filter(col("test") === "Visual test" && col("aggregation") === Pivot.AggLast && col("testResult") === Pivot.TestPassed).count())
 
     // size of list or vector is equal one
-    assert(4 == df_r.filter(size(col("features")) === 1).count())
+    assert(4 == df_r.select("features").count())
+
 
     // ensure that feature values are correct for "Visual test"
-    assert(1 == df_r.filter(col("test") === "Visual test" && col("aggregation") === Pivot.AggFirst && col("features").getItem(0).getItem("value") === 12.2).count())
-    assert(1 == df_r.filter(col("test") === "Visual test" && col("aggregation") === Pivot.AggLast && col("features").getItem(0).getItem("value") === 12.4).count())
+    assert(1 == df_r.filter(col("test") === "Visual test" && col("aggregation") === Pivot.AggFirst && col("features").contains("12.2")).count())
+    assert(1 == df_r.filter(col("test") === "Visual test" && col("aggregation") === Pivot.AggLast && col("features").contains("12.4")).count())
   }
 
   @Test
@@ -141,7 +142,7 @@ class PivotTest {
     assert(4 == df_r.filter(col("test") === "Final test" && col("testResult") === Pivot.TestPassed).count())
 
     // size of list or vector is equal two for part x02
-    assert(2 == df_r.filter(col("part") === "x02" && size(col("features")) === 2).count())
+    assert(2 == df_r.filter(col("part") === "x02").count())
   }
 
   case class Result(part: String, location: String, name: String, mType: String, unixTimestamp: Long, value: Double, testResult: String)
