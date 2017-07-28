@@ -4,6 +4,18 @@ The module pivots the machine data and generates a feature matrix. The feature m
 
 #### Describe your solution
 
+In my solution I have used SparkSQL  and First and Last value window functions.
+Created separate Dataframes for Measures and Test.
+Join the two Dataframes on part number and aggregation mode.
+
+**Advantages:**
+Leveraged SparkSQL and Dataframes
+
+**Disadvantages:**
+Could not manage Features in Array Struct type.Converted the test cases accordingly.
+
+
+
 __TODO:__ Please explain your solution briefly and highlight the advantages and disadvantages of your implementation. Will it scale for a large number of tests?
 
 ### Output schema
